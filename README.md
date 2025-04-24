@@ -1,2 +1,2 @@
 # popgen
-Bunch of script useful for population genomic analyses
+Bunch of scripts useful for population genomic analyses
