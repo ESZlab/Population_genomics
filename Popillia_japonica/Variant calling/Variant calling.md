@@ -1,6 +1,6 @@
 # VARIANT CALLING
 
-The following documents describe the procedure from raw WGS reads to the two final snp datasets used in population analyses.
+The following document describe the procedure from raw WGS reads to the two final snp datasets used in population analyses.
 The procedure follows the tutorial by Mark Ravinet & Joana Meier associated to the Physalia course on 'Speciation & Population Genomics'. The latter can be found at https://speciationgenomics.github.io/
 
 
