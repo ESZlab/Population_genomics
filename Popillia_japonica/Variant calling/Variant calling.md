@@ -1,19 +1,20 @@
 # VARIANT CALLING
 
 The following document describe the procedure from raw WGS reads to the two final snp datasets used in population analyses.
-The procedure follows the tutorial by Mark Ravinet & Joana Meier associated to the Physalia course on 'Speciation & Population Genomics'. The latter can be found at https://speciationgenomics.github.io/
+The procedure builds over the tutorial by Mark Ravinet & Joana Meier associated to the Physalia course on 'Speciation & Population Genomics'. The latter can be found at https://speciationgenomics.github.io/
 
 
 
 ## TRIMMING
 
-The following commands will perform quality trimming on the raw Illumina reads (.fastq.gz). R1 and R2 reads for one individual (i.e. the raw data) are here conventionally named XXX_1.fastq.gz and XXX_2.fastq.gz. The commands are to be repeated on all individuals.
+The following commands will perform quality trimming on the raw Illumina reads (.fastq.gz). R1 and R2 reads for one individual (i.e. the raw data) are here conventionally named XXX_1.fastq.gz and XXX_2.fastq.gz. The commands are to be repeated on all individuals.  
+Raw sequence data are available from the NCBI’s SRA database within BioProject ID PRJNA860365 under accessions SRR20647930, SRR20647937, SRR20647939, SRR2064794, SRR20647946 and SRR22354722-SRR22354802. See manuscript for details.
 
 ### Required software
 fastp
 
 ### Input files
-`XXX_1.fastq.gz` Raw data, R1 reads
+`XXX_1.fastq.gz` Raw data, R1 reads  
 `XXX_2.fastq.gz` Raw data, R2 reads
 
 ### Commands
@@ -39,8 +40,8 @@ fastp \
 ```
 
 ### Relevant output files
-`XXX_1t.fastq.gz` Trimmed data, R1 reads
-`XXX_2t.fastq.gz` Trimmed data, R2 reads
+`XXX_1t.fastq.gz` Trimmed data, R1 reads  
+`XXX_2t.fastq.gz` Trimmed data, R2 reads  
 `XXX_stats` Read quality and trimming statistics
 
 
@@ -50,18 +51,19 @@ fastp \
 
 ## REMAPPING AND READ FILTERING
 
-Reads are here remapped over the genome. The commands are to be repeated on all individuals.
+Reads are here remapped over the genome. The commands are to be repeated on all individuals.  
 
 ### Required software
-bbmap
-samtools
+bbmap  
+samtools  
 picard
 
 ### Input files
-`Masked.fasta` The genome sequence.
-`Masked.fasta.fai` Its index.
-`XXX_1.fastq.gz` Trimmed data, R1 reads
-`XXX_2.fastq.gz` Trimmed data, R2 reads
+`Masked.fasta` The genome sequence.  
+`Masked.fasta.fai` Its index.  
+`XXX_1.fastq.gz` Trimmed data, R1 reads  
+`XXX_2.fastq.gz` Trimmed data, R2 reads  
+Genome file, alongside metadata, will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
 
 ### Commands
 ```
@@ -123,9 +125,10 @@ Individual remapping files are globally compared. All variable sites are initial
 bcftools
 
 ### Input files
-`Masked.fasta` The genome sequence.
-`Masked.fasta.fai` Its index.
-`bamlist83` List of .bam files from previous step (e.g. XXX.mapped.sort.rmd.q20Ff.bam), one per individual
+`Masked.fasta` The genome sequence.  
+`Masked.fasta.fai` Its index.  
+`bamlist83` List of .bam files from previous step (e.g. XXX.mapped.sort.rmd.q20Ff.bam), one per individual  
+Genome file, alongside metadata and list of .bam files used, will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
 
 ### Commands
 ```
@@ -173,13 +176,14 @@ bcftools stats allsnps.sort.vcf.gz > allsnps.sort.vcf.gz_stats
 Initial filtering is conducted on the snp set to remove a) sites in regions identified as repeated elements and b) sites in contigs characterized by an extreme coverage.
 
 ### Required software
-vcftools
-bcftools
+vcftools  
+bcftools  
 
 ### Input files
-`allsnps.sort.vcf.gz` Called snps (to be filtered).
-`RepeatElements.bed` List of regions identified as repeated elements (to be excluded).
-`contigbuoni_inner` Contigs characterized by a standard coverage (to be reatained).
+`allsnps.sort.vcf.gz` Called snps (to be filtered).  
+`RepeatElements.bed` List of regions identified as repeated elements (to be excluded).  
+`contigbuoni_inner` Contigs characterized by a standard coverage (to be reatained).  
+The list of repeat elements and of the copntigs used in the analysis will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
 
 ### Commands
 ```
@@ -218,9 +222,9 @@ bcftools stats allsnps.sort.nomask.nobadcov.vcf.gz > allsnps.sort.nomask.nobadco
 The distribution of multiple statistics are calculated over sites and over individuals to identify sensible filtering parameters/thresholds. These filters are then applied to the snp list from the previous step to produce a final, filtered, dataset. Linkage pruning is applied to the latter to produce a twin dataset with sites in linkage equilibrium, to be used in some analyses.
 
 ### Required software
-vcftools
-bcftools
-plink
+vcftools  
+bcftools  
+plink  
 
 ### Input files
 `allsnps.sort.nomask.nobadcov.vcf.gz`
@@ -307,7 +311,8 @@ bcftools stats snps_3p_unl.vcf.gz > snps_3p_unl.vcf.gz_stats
 ```
 
 ### Relevant output files
-`snps_3p.vcf.gz` Called snps, final filtered version, all sites.
-`snps_3p_unl.vcf.gz` Called snps, final filtered version, unlinked sites only.
+`snps_3p.vcf.gz` Called snps, final filtered version, all sites.  
+`snps_3p_unl.vcf.gz` Called snps, final filtered version, unlinked sites only.  
+Final .vcf files will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
 
 
