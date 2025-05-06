@@ -63,7 +63,7 @@ picard
 `Masked.fasta.fai` Its index.  
 `XXX_1.fastq.gz` Trimmed data, R1 reads  
 `XXX_2.fastq.gz` Trimmed data, R2 reads  
-Genome file, alongside metadata, will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
+The masked genome file, alongside metadata, will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
 
 ### Commands
 ```
