@@ -219,7 +219,7 @@ bcftools stats allsnps.sort.nomask.nobadcov.vcf.gz > allsnps.sort.nomask.nobadco
 
 ## QUALITY FILTERING OF SITES
 
-The distribution of multiple statistics are calculated over sites and over individuals to identify sensible filtering parameters/thresholds. These filters are then applied to the snp list from the previous step to produce a final, filtered, dataset. Linkage pruning is applied to the latter to produce a twin dataset with sites in linkage equilibrium, to be used in some analyses.
+The distribution of multiple statistics are calculated over sites and over individuals to identify sensible filtering parameters/thresholds. These filters are then applied to the snp list from the previous step to produce a final, filtered, dataset. Linkage pruning is applied to the latter to produce a twin dataset with sites in linkage equilibrium.
 
 ### Required software
 vcftools  
