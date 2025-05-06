@@ -71,7 +71,7 @@ The masked genome file, alongside metadata, will be publicly available on a dedi
 bbmap.sh \
 ref=Masked.fasta \
 in=XXX_1t.fastq.gz \
-in2=$XXX_2t.fastq.gz \
+in2=XXX_2t.fastq.gz \
 outm=XXX.mapped.bam \
 t=20 \
 maxindel=200 \
