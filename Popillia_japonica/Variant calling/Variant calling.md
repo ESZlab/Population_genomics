@@ -232,7 +232,6 @@ plink
 ### Commands
 ```
 # calculate the distribution of multiple snp statistics
-# manually revise to identify sensible filtering thresholds
 # allele frequency
 vcftools --gzvcf allsnps.sort.nomask.nobadcov.vcf.gz --freq2 --max-alleles 2 --stdout > snps.allelefreq
 # mean depth per individual
@@ -247,6 +246,8 @@ vcftools --gzvcf allsnps.sort.nomask.nobadcov.vcf.gz --missing-indv --stdout > s
 vcftools --gzvcf allsnps.sort.nomask.nobadcov.vcf.gz --missing-site --stdout > snps.missingIndxSite
 # heterozygosity
 vcftools --gzvcf allsnps.sort.nomask.nobadcov.vcf.gz --het --stdout > snps.heterozygosity
+
+# manually revise output to identify sensible filtering thresholds
 
 # apply filters
 vcftools --gzvcf allsnps.sort.nomask.nobadcov.vcf.gz \
