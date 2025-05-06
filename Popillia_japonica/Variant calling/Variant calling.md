@@ -120,7 +120,7 @@ in=XXX.mapped.sort.rmd.q20Ff.bam \
 ## GLOBAL CALLING
 
 Individual remapping files are globally compared. All variable sites are initially identified and snp as well as indel variants are called using the multiallelic caller. Snps within the range of 3bp from an indel are removed. Indels are removed, and only snp retained for further analysis.  
-This step is very computationally intensive. The analysis was run on the 'Marie' cluster (https://molsys.dbcf.unisi.it/hpc/) hosted at the Department of Biotechnology, chemistry and pharmacy of the University of Siena (https://molsys.dbcf.unisi.it/hpc/).
+This step is very computationally intensive. The analysis was run on the 'Marie' cluster 'Marie' hosted at the Department of Biotechnology, chemistry and pharmacy of the University of Siena (https://molsys.dbcf.unisi.it/hpc/).
 
 ### Required software
 bcftools
