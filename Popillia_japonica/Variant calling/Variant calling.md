@@ -59,7 +59,7 @@ samtools
 picard
 
 ### Input files
-`Masked.fasta` The genome sequence.  
+`Masked.fasta` The genome sequence (see Cucini et al., BMC Genomics 2024).  
 `Masked.fasta.fai` Its index.  
 `XXX_1.fastq.gz` Trimmed data, R1 reads  
 `XXX_2.fastq.gz` Trimmed data, R2 reads  
@@ -173,7 +173,7 @@ bcftools stats allsnps.sort.vcf.gz > allsnps.sort.vcf.gz_stats
 
 ## FILTERING FOR CONTIG/REGIONS
 
-Initial filtering is conducted on the snp set to remove a) sites in regions identified as repeated elements and b) sites in contigs characterized by an extreme coverage.
+Initial filtering is conducted on the snp set to remove a) sites in regions identified as repeated elements (see Cucini et al., BMC Genomics 2024) and b) sites in contigs characterized by an extreme coverage.
 
 ### Required software
 vcftools  
