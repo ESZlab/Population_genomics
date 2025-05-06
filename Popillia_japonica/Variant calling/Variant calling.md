@@ -127,7 +127,7 @@ bcftools
 ### Input files
 `Masked.fasta` The genome sequence.  
 `Masked.fasta.fai` Its index.  
-`bamlist83` List of .bam files from previous step (e.g. XXX.mapped.sort.rmd.q20Ff.bam), one per individual  
+`bamlist83` List of .bam files from previous step (e.g. XXX.mapped.sort.rmd.q20Ff.bam), one per individual.  
 Genome file, alongside metadata and list of .bam files used, will be publicly available on a dedicated repositoriy on Figshare that accompanies the publication. **NOTE FOR REVIEWERS**: a reviewer's link has been created ad interim and shared with the journal to allow private revision of this material. If not available, please contact the journal. See manuscript for details.
 
 ### Commands
