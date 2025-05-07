@@ -92,9 +92,9 @@ write.table(outliers_padj_bonf_clean_nu,
             file = "ncj_usca_outliers_pcadapt.txt",
             sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
-# The following step has to be run after Fst analysis
+# The following step has to be run after F<sub>ST</sub> analysis
 # -----------------------------
-# Step 6: Manhattan plot highlighting shared Fst/PCAdapt outliers
+# Step 6: Manhattan plot highlighting shared F<sub>ST</sub>/PCAdapt outliers
 # -----------------------------
 # Prepare data for qqman
 padj_bonf_table_nu <- na.omit(padj_bonf_table_nu)
@@ -102,7 +102,7 @@ colnames(padj_bonf_table_nu) <- c("P", "CHR", "BP")
 padj_bonf_table_nu$CHR <- as.numeric(gsub("[^0-9]", "", padj_bonf_table_nu$CHR))
 padj_bonf_table_nu$SNP <- paste0(padj_bonf_table_nu$CHR, ":", padj_bonf_table_nu$BP)
 
-# Highlight SNPs previously found in FST sliding window analysis
+# Highlight SNPs previously found in F<sub>ST</sub> sliding window analysis
 highlight_snps_nu <- c("44:574340", "47:1388008", "64:1187582", 
                        "71:1412535", "159:567053", "183:75772", 
                        "207:872553", "226:359789", "255:685705", 
@@ -134,7 +134,7 @@ manhattan(padj_bonf_table_nu,
 abline(h = -log10(alpha), col = "red", lwd = 2.5)
 ```
 
-# GENOME-WIDE SCANS FOR DETECTION OF OUTLIER SNPs with Fst SLIDING WINDOWS using VCFtools 
+# GENOME-WIDE SCANS FOR DETECTION OF OUTLIER SNPs with F<sub>ST</sub> SLIDING WINDOWS using VCFtools 
 
 
 Example for *Popillia japonica* with: NORTH/CENTRE JAPAN vs USA + CANADA
@@ -144,7 +144,7 @@ subset the VCF file in order to have a VCF containg only individuals from contra
 vcftools --vcf snps_3p_new.vcf --keep ncjap_usca.txt --out ncjap_usca --recode
 ```
 
-## Run Fst sliding windows analysis 
+## Run F<sub>ST</sub> sliding windows analysis 
 Prepare population maps `.txt` files for each contrasted population 
 
 ```
@@ -152,9 +152,9 @@ vcftools --vcf ~/snps_pj/datasets_vcf/nat_pop_vcf/ncjap_usca.vcf --weir-fst-pop 
 ```
 
 ### NOTES: 
-`--weir-fst-pop`--> This option is used to calculate an Weir and Cockerham’s Fst estimate. The provided file must contain a list of individuals (one individual per line) from the VCF file that correspond to one population. By default, calculations are done on a per-site basis. The output file has the suffix `*.weir.fst`.
+`--weir-fst-pop`--> This option is used to calculate an Weir and Cockerham’s F<sub>ST</sub> estimate. The provided file must contain a list of individuals (one individual per line) from the VCF file that correspond to one population. By default, calculations are done on a per-site basis. The output file has the suffix `*.weir.fst`.
 
-`--fst-window-size <integer>`  --> These options can be used with `--weir-fst-pop` to do the Fst calculations on a windowed basis instead of a per-site basis. The argument specify the desired window size
+`--fst-window-size <integer>`  --> These options can be used with `--weir-fst-pop` to do the F<sub>ST</sub> calculations on a windowed basis instead of a per-site basis. The argument specify the desired window size
 
 ## In R:
 
@@ -222,7 +222,7 @@ snp_list_ncjus$CHR <- as.numeric(snp_list_ncjus$CHR)
 # Initialize a logical vector to store the matches
 matched_indices_ncjus <- logical(nrow(ncj_us_fst))
 
-# Subset the Fst data to get only the matched windows
+# Subset the F<sub>ST</sub> data to get only the matched windows
 matched_windows_ncjus <- ncj_us_fst[matched_indices_ncjus, ]
 
 # Ensure the highlight column is logical and contains TRUE/FALSE values
@@ -249,7 +249,7 @@ par(mar = c(5, 5, 3, 2))  # Adjusting the margins (bottom, left, top, right)
 manhattan(ncj_us_fst, 
           chr = "CHROM", 
           bp = "BIN_START", 
-          p = "WEIGHTED_FST", 
+          p = "WEIGHTED_F<sub>ST</sub>", 
           snp = "snp_id",  # Column for SNP identifiers
           highlight = highlighted_snp_ids_ncjus,  # SNPs to highlight
           col = c('grey20'),  # Grey for non-highlighted, red for highlighted
@@ -265,7 +265,7 @@ manhattan(ncj_us_fst,
 abline(h = 0.6852329, col = "red", lwd = 2.5) 
 
 ```
-# GENOME-WIDE SCANS FOR DETECTION OF OUTLIER SNPs uSING Fst SLIDING WINDOWS with VCFtools
+# GENOME-WIDE SCANS FOR DETECTION OF OUTLIER SNPs USING F<sub>ST</sub> SLIDING WINDOWS with VCFtools
 
 Example for *Popillia japonica* with: NORTH/CENTRE JAPAN vs USA + CANADA
 
@@ -277,7 +277,7 @@ vcftools --vcf snps_3p_new.vcf --keep ncjap_usca.txt --out ncjap_usca --recode
 ```
 
 
-## STEP 2: RUN Fst SLIDING WINDOW ANALYSIS
+## STEP 2: RUN F<sub>ST</sub> SLIDING WINDOW ANALYSIS
 
 Prepare two population maps `.txt` with individual IDs per population
 ```
@@ -383,8 +383,8 @@ manhattan(ncj_us_fst,
 
 abline(h = 0.6852329, col = "red", lwd = 2.5)
 ```
-# GENOME-WIDE OUTLIER SNPs: INTERSECTIONS BETWEEN FST AND PCADAPT RESULTS VENN DIAGRAM ANALYSIS USING R
-This step allows to identify SNPs consistently identified as outliers by both FST-based and PCAdapt-based approaches.
+# GENOME-WIDE OUTLIER SNPs: INTERSECTIONS BETWEEN F<sub>ST</sub> AND PCADAPT RESULTS VENN DIAGRAM ANALYSIS USING R
+This step allows to identify SNPs consistently identified as outliers by both F<sub>ST</sub>-based and PCAdapt-based approaches.
 
 The procedure was replicated for all population contrasts.
 ```
@@ -393,7 +393,7 @@ library(gplots)
 library(ggvenn)
 
 
-# Load SNPs identified as outliers by FST analysis
+# Load SNPs identified as outliers by F<sub>ST</sub> analysis
 ncjap_usca_fst <- read.table("outliers_fst/venn/ncj_usca_outlier_snps.txt", header = FALSE)
 colnames(ncjap_usca_fst) <- "SNP"
 
@@ -583,4 +583,89 @@ cat annot_results_gff/annot_NCJ_USCA.vcf \
   > outlierSNPs_NCJ_USCA.annot.sift.txt
 
 ```
+# Calculate F<sub>ST</sub> values under neutral evolution using Fastsimcoal 2  
 
+To evaluate possible effects of non-equilibrium dynamics in shaping the observed F<sub>ST</sub> values, expected F<sub>ST</sub> values at different contrasts were obtained through a simulation under neutral evolution within the best model identified in the third step of demographic analysis (see STEP-BY-STEP DEMOGRAPHIC INFERENCE WITH FASTSIMCOAL 2).
+
+
+### <u>CITATION</u>: 
+
+Excoffier, L. and M. Foll. 2011. fastsimcoal: a continuous-time coalescent simulator of genomic diversity under arbitrarily complex evolutionary scenarios. Bioinformatics 27: 1332-1334.
+
+Excoffier, L., Dupanloup, I., Huerta-Sánchez, E., and M. Foll (2013) Robust demographic inference from genomic and SNP data. PLOS Genetics 9(10):e1003905.
+
+### <u>LINK to Fastsimcoal manual</u>:
+
+Fastsimcoal manual: https://cmpg.unibe.ch/software/fastsimcoal2/man/fastsimcoal28.pdf
+
+## File preparation
+The new simulated dataset can include a number of SNPs tailored to the analysis. In this case, a dataset of 295,396 unlinked SNPs was simulated, matching the original dataset.
+To proceed, the best maxL.par file—an output of the demographic analysis performed with fastsimcoal2—must be selected. This involves first identifying the best subset, defined as the one with the highest DeltaAIC between the top two models. Within this subset, the best model is determined, after which the individual runs are evaluated. The optimal run is the one with the highest Estimated Likelihood, i.e., the value closest to the Observed Likelihood (which remains constant across models).
+Once the best run of the best model within the best subset is identified, the corresponding maxL.par file should be selected and its final lines modified as described below.
+
+```
+//Number of independent loci [chromosomes]
+150000000 0                                                                      
+//Per chromosome: Number of linkage blocks
+1
+//per block: Datatype, numm loci, rec rate and mut rate + optional parameters
+DNA 100 0 2.1e-9
+
+# Notes:
+# 150000000 is the number of independent DNA sequences to simulate, which has to be much higher than the number of SNPs to simulate. It is possible to start with lower numbers and adjust it to reach the desired dataset
+# 1 depends on the number of blocks below
+# DNA is the type of data to simulate
+# 100 is the simulated sequences length
+# 0 is the recombination rate
+# 2.1e-9 is the chosen mutation rate
+```
+                
+## Run the Fastsimcoal 2 command
+### In terminal
+
+Once the file is ready, it is possible to run the following command
+
+```
+./fsc28 -i modifiedMaxLpar.par -n 1 -G -g -s 295396 -C12 -B12       
+```
+
+### Notes:
+`-i` specifies the par file
+
+`-n` specifies the number of files to simulate
+
+`-G` generates a genotype table (extension .geno)
+
+`-g` generates an arlequin project file (extension .arp)
+
+`-s` specifies the number of SNPs to simulate
+
+## File conversion
+Once genotype table (`.geno`) and arlequin project file with the desired number of SNPs are produced, we can convert one of them to VCF
+Note that the number of samples per population that you get in this simulated SNP file is the same as your projection numbers in your initial mSFS. 
+
+The `.arp` file can be converted to VCF format using tools such as arp2vcf, which converts fastsimcoal2-simulated DNA data into VCF format (https://rdrr.io/github/dinmatias/reconproGS/man/arp2vcf.html), or other publicly available methods.
+
+In the present workflow, the `.geno` file was converted to VCF format using an in-house Python script, which also assigned new names to the simulated samples. The script is available under the name geno_to_vcf.py.
+
+## Sliding Windows F<sub>ST</sub> analysis using VCFtools
+
+Based on the newly simulated dataset, updated namelists and population maps can be generated.
+
+Once all necessary files have been prepared, a sliding window analysis can be performed using VCFtools, following the same approach described for the main analysis:
+1) Subset the VCF file for the populations being contrasted
+2) Run the F<sub>ST</sub> sliding window analysis
+
+### In R 
+
+Example for simulated and subsetted dataset with: NORTH/CENTRE JAPAN vs USA + CANADA
+
+```
+Load the dataset (remove any scaffold suffixes if present)
+ncj_us_simulated_fst <- read.table("noF/simulatated_ncj_usca_fst_5kb.windowed.weir.fst", header = TRUE)
+
+ncjus_simulated_wfst <- ncj_us_simulated_fst$WEIGHTED_FST
+mean(ncjus_simulated_wfst)
+quantile(ncjus_simulated_wfst, 0.999)
+```
+F<sub>ST</sub> values expected under neutral evolution can now be compared to the observed values.
