@@ -163,7 +163,7 @@ vcftools --vcf ~/snps_pj/datasets_vcf/nat_pop_vcf/ncjap_usca.vcf --weir-fst-pop 
 #set working directory
 setwd('/home/rf/Scrivania/Revision_part2/revision_2/SW/')
 
-#NCJ s USCA
+#NCJ vs USCA
 #load dataset - letters in scaffold names have to be removed 
 ncj_us_fst <- read.table("noF/ncj_usca_fst_5kb.windowed.weir.fst", header=T)
 head(ncj_us_fst)
