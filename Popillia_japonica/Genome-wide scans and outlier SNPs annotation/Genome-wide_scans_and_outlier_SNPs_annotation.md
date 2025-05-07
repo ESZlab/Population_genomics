@@ -547,6 +547,8 @@ After each run, three output files are produced:
 - `summary.html` (guide for interpretation of annotations: https://pcingola.github.io/SnpEff/se_outputsummary/)
 - `gene_list.txt` with the list of annotated genes
 
+To avoid overwriting files in subsequent contrast analyses, move these files into a dedicated folder (e.g., NCJvsUSCA).
+
 ### Search for annotated proteins in the gene list (example for genes g15733.t1 and g15734.t1)
 ```
 cat genes.gff | grep -F 'g15733.t1'
