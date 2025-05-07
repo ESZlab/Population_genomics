@@ -646,7 +646,7 @@ Note that the number of samples per population that you get in this simulated SN
 
 The `.arp` file can be converted to VCF format using tools such as arp2vcf, which converts fastsimcoal2-simulated DNA data into VCF format (https://rdrr.io/github/dinmatias/reconproGS/man/arp2vcf.html), or other publicly available methods.
 
-In the present workflow, the `.geno` file was converted to VCF format using an in-house Python script, which also assigned new names to the simulated samples. The script is available under the name geno_to_vcf.py.
+In the present workflow, the `.geno` file was converted to VCF format using an in-house Python script, which also assigned new names to the simulated samples. The script is available under the name <a href=https://github.com/ESZlab/Population_genomics/blob/main/Popillia_japonica/geno_to_vcf.py>`geno_to_vcf.py`</a>.
 
 ## Sliding Windows F<sub>ST</sub> analysis using VCFtools
 
